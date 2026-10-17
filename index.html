@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HoldUp – Buy better. Waste less.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF8F4;--teal:#0E9488;--or:#FF7F3F;--navy:#111C33;--gr:#8A90A0;--peach:#FFEFE6;--pink:#FFEDF1;--mint:#E8F7F6;--yel:#FFF9E6;--sh:0 4px 16px rgba(26,35,64,.08)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Plus Jakarta Sans',system-ui,Arial,sans-serif;background:var(--bg);color:var(--navy);min-height:100vh}
+#app{max-width:420px;min-height:100vh;margin:0 auto;padding:44px 16px 32px;position:relative}
+button{font-family:inherit;border:0;cursor:pointer;background:none;color:inherit}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px;color:var(--teal)}
+.logo i{width:32px;height:32px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-style:normal;font-size:14px}
+.pill{border:1px solid #BFE3DF;background:#fff;color:var(--teal);font-weight:700;font-size:11px;padding:6px 12px;border-radius:99px}
+.hero{position:relative;overflow:hidden;background:var(--peach);border-radius:24px;padding:26px 20px 24px;margin-bottom:22px}
+.hero:before,.hero:after,.hero b{content:"";position:absolute;border-radius:50%}
+.hero:before{width:104px;height:104px;background:#FFE2D0;right:-24px;top:-30px}
+.hero:after{width:76px;height:76px;background:#FFF0C9;left:-18px;bottom:-22px}
+.hero b{width:30px;height:30px;background:#FFD3DC;right:20px;bottom:50px}
+.hero>*{position:relative;z-index:1}
+.hero .ic{font-size:22px;display:flex;gap:16px;margin-bottom:12px}
+.hero h1{font-size:30px;line-height:1.08;font-weight:800;margin-bottom:10px}
+.hero p{font-size:12px;color:var(--gr);line-height:1.35}
+.lbl{font-size:9px;font-weight:700;letter-spacing:.1em;color:#9AA0B0;text-transform:uppercase;margin-bottom:10px}
+.card{background:#fff;border-radius:18px;box-shadow:var(--sh)}
+.chk{padding:0 4px}
+.chk button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 12px;font-size:12px;font-weight:700;color:#2B3550;text-align:left;border-bottom:1px solid #F1EFEB}
+.chk button:last-child{border:0}
+.chk .c{width:18px;height:18px;border-radius:50%;border:1.5px solid #D5D7DD;display:grid;place-items:center;color:#fff;font-size:10px}
+.chk .on .c{background:var(--teal);border-color:var(--teal)}
+.chk .on span{text-decoration:line-through;color:#A5A9B5}
+.cta{display:block;width:100%;padding:15px;border-radius:14px;background:var(--or);color:#fff;font-weight:800;font-size:13px;box-shadow:0 8px 20px rgba(255,127,63,.35);margin-top:20px}
+.cta.w{background:#fff;color:var(--navy);box-shadow:var(--sh);border:1px solid #EDE9E3;margin-top:10px;padding:12px}
+.foot{text-align:center;font-size:9.5px;color:var(--gr);margin-top:16px}
+.hd{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:12px;font-weight:600;color:var(--gr)}
+.back{width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid #EDE9E3;display:grid;place-items:center;font-size:13px}
+h2{font-size:22px;font-weight:800;line-height:1.2}
+.sub{font-size:11px;color:var(--gr);margin-top:6px}
+.fl{margin-top:22px}
+.in{display:flex;align-items:center;gap:8px;background:#fff;border-radius:12px;box-shadow:var(--sh);padding:0 14px;height:40px}
+.in input{border:0;outline:0;flex:1;font:500 12px inherit;font-family:inherit;color:var(--navy);background:none}
+.in span{color:var(--gr);font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips button{background:#fff;border-radius:99px;padding:7px 14px;font-size:10.5px;font-weight:700;color:#4A5470;box-shadow:0 1px 4px rgba(26,35,64,.05)}
+.chips .on{background:var(--or);color:#fff}
+.prog{display:flex;gap:6px;margin-bottom:20px}
+.prog i{flex:1;height:4px;border-radius:2px;background:#E6E4E0}
+.prog .d{background:var(--teal)}.prog .a{background:var(--or)}
+.item{display:flex;align-items:center;gap:12px;background:var(--peach);border-radius:14px;padding:10px 20px;margin-bottom:22px}
+.item small{display:block;font-size:9px;color:var(--gr)}.item strong{font-size:12px;font-weight:800}.item em{font-style:normal;font-size:18px}
+.q{padding:18px 16px;margin-bottom:12px;border-radius:16px;background:#fff;box-shadow:var(--sh)}
+.q.f{opacity:.5;box-shadow:none}.q.f h3,.q.f p{color:#B9BCC6}
+.q.act{border:1px solid #F5D9C8}
+.q h3{font-size:14px;font-weight:800}.q p{font-size:10.5px;color:var(--gr);margin-top:3px}
+.ans{display:flex;gap:8px;margin-top:14px}
+.ans button{flex:1;padding:11px 8px;border-radius:99px;font-size:12px;font-weight:700}
+.ans .y{background:var(--teal);color:#fff}.ans .n{background:var(--peach);color:var(--or)}
+.chip{display:inline-block;margin-top:12px;padding:6px 12px;border-radius:99px;font-size:11px;font-weight:700}
+.chip.g{background:var(--mint);color:var(--teal)}.chip.o{background:var(--peach);color:var(--or)}
+.alt{display:flex;gap:12px;padding:14px 12px;border-radius:16px;margin-bottom:10px}
+.alt .ai{width:38px;height:38px;flex:none;border-radius:12px;background:#fff;display:grid;place-items:center;font-size:17px}
+.alt h4{font-size:13px;font-weight:800}.alt h4 small{font-size:9.5px;font-weight:400;color:var(--gr);margin-left:6px}
+.alt p{font-size:9.5px;line-height:1.5;color:#4A5470;margin-top:5px}
+.tag{display:inline-flex;gap:6px;background:var(--mint);color:var(--teal);font-size:12px;font-weight:800;padding:9px 16px;border-radius:99px;margin-bottom:18px}
+.body{font-size:11px;line-height:1.5;color:#4A5470;margin-top:10px}
+.it{padding:14px;margin:22px 0 18px;display:grid;grid-template-columns:1fr auto;row-gap:4px}
+.it small{font-size:9.5px;color:var(--gr)}.it b{font-size:13px;font-weight:800}.it .p{color:var(--or);text-align:right}
+.lnk{display:block;margin:22px auto 0;color:var(--teal);font-weight:700;font-size:11.5px}
+.samp{display:inline-block;background:#FFF3C9;border:1px solid #F2DE94;color:#7A5A00;font-size:9.5px;font-weight:700;padding:3px 12px;border-radius:99px;margin-top:10px}
+.big{background:var(--peach);border-radius:20px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin:20px 0 12px}
+.big i{width:44px;height:44px;border-radius:14px;background:var(--or);display:grid;place-items:center;font-style:normal;font-size:20px}
+.big strong{display:block;font-size:24px;font-weight:800}.big span{font-size:11px;color:var(--gr)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.two div{border-radius:16px;padding:14px;font-size:9.5px;color:var(--gr)}
+.two em{display:block;font-style:normal;font-size:16px}.two strong{display:block;font-size:22px;color:var(--navy);margin:6px 0 4px}
+.goal{padding:14px;margin-bottom:14px}.goal div{display:flex;justify-content:space-between;font-size:11.5px;font-weight:800}.goal div b{color:var(--teal);font-size:10.5px}
+.bar{height:8px;background:#EEF0F1;border-radius:4px;margin:12px 0 8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#0E9488,#3BB5A8);border-radius:4px}
+.goal small{font-size:9.5px;color:var(--gr)}
+.know{background:var(--yel);border:1px solid #F5EBC0;border-radius:14px;padding:14px;font-size:9.5px;line-height:1.45;color:#4A5470}.know b{display:block;font-size:10.5px;color:var(--navy);margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:12px;font-weight:600;padding:12px 18px;border-radius:99px;box-shadow:var(--sh)}
+.fade{animation:f .25s ease}@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const $=document.getElementById('app');
+const S={screen:'home',checks:[false,false,false],name:'',price:'',cat:'Electronics',ans:[],stack:[],toast:''};
+const CATS=['Electronics','Clothing','Food','Home','Beauty','Books','Other'];
+const QS=[['Do I genuinely need this?','Or is it more of a want right now?','Yes, I need it','Not really'],
+['Do I own something similar?','Could an existing item do the same job?','Yes, I already have one','Nothing similar'],
+['Can this wait 24 hours?','Impulse or intentional purchase?','Yes, it can wait','Needs to be soon']];
+const ALTS=[['Repair','Fix what you have','var(--or)','var(--peach)','🔧','Before buying new, can an existing item be repaired? Local repair shops and YouTube tutorials can save you thousands and extend product life.'],
+['Borrow','Ask your network','#C2185B','var(--pink)','🤝','Someone in your circle likely owns this already. Borrowing costs nothing and builds community. Ask before you shop.'],
+['Rent','Pay only for when you use it','#8A5A00','var(--yel)','🗓️','For occasional-use items, renting beats owning. Many Indian platforms offer daily or weekly rentals at a fraction of the purchase price.'],
+['Second-hand','Pre-loved & planet-kind','var(--teal)','var(--mint)','♻️','OLX, Facebook Marketplace, and thrift stores often carry the same item for 30–70% less. Better for your wallet and the planet.']];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const priceTxt=()=>S.price||'0';
+function go(s,push=true){if(push)S.stack.push(S.screen);S.screen=s;render();window.scrollTo(0,0)}
+function back(){S.screen=S.stack.pop()||'home';render()}
+function toast(t){S.toast=t;render();setTimeout(()=>{S.toast='';render()},2200)}
+const hd=t=>`<div class="hd"><button class="back" onclick="back()">←</button>${t}</div>`;
+const itemBar=()=>`<div class="item"><em>🛍️</em><div><small>Thinking of buying</small><strong>${esc(S.name||'Item')} · ₹${esc(priceTxt())}</strong></div></div>`;
+const prog=n=>`<div class="prog">${[0,1,2].map(i=>`<i class="${i<n?'d':i==n?'a':''}"></i>`).join('')}</div>`;
+function qcard(i,state){const [q,s,y,n]=QS[i];
+ if(state==='f')return `<div class="q f"><h3>${q}</h3><p>${s}</p></div>`;
+ if(state==='a')return `<div class="q act"><h3>${q}</h3><p>${s}</p><div class="ans"><button class="y" onclick="answer(${i},true)">${y}</button><button class="n" onclick="answer(${i},false)">${n}</button></div></div>`;
+ const yes=S.ans[i];return `<div class="q"><h3>${q}</h3><p>${s}</p><span class="chip ${yes?'g':'o'}">✓ ${yes?y:n}</span></div>`}
+function answer(i,v){S.ans[i]=v;if(i<2)render();else render();window.scrollTo(0,0)}
+function wantsToBuy(){return S.ans[0]===true&&S.ans[1]===false&&S.ans[2]===false}
+const views={
+home(){return `<div class="top"><div class="logo"><i>🛍</i>HoldUp</div><button class="pill" onclick="go('impact')">My Impact</button></div>
+<div class="hero"><b></b><div class="ic"><span>🛍️</span><span>🌿</span></div><h1>Buy better.<br>Waste less.</h1><p>Small pauses. Smarter purchases.<br>Less waste.</p></div>
+<div class="lbl">Before you buy</div><div class="card chk">${['Do I need it?','Do I own something similar?','Can it wait 24 hours?'].map((t,i)=>`<button class="${S.checks[i]?'on':''}" onclick="S.checks[${i}]=!S.checks[${i}];render()"><i class="c">${S.checks[i]?'✓':''}</i><span>${t}</span></button>`).join('')}</div>
+<button class="cta" onclick="S.ans=[];go('new')">Help Me Decide</button><div class="foot">Pause · Reflect · Choose wisely</div>`},
+new(){return `${hd('New item')}<h2>What are you<br>thinking of buying?</h2><div class="sub">Tell us a bit about it.</div>
+<div class="fl"><div class="lbl">Product name</div><div class="in"><input id="nm" value="${esc(S.name)}" oninput="S.name=this.value" placeholder="e.g. Headphones"></div></div>
+<div class="fl"><div class="lbl">Price (₹)</div><div class="in"><span>₹</span><input id="pr" inputmode="numeric" value="${esc(S.price)}" oninput="this.value=this.value.replace(/[^0-9]/g,'');S.price=this.value" placeholder="0"></div></div>
+<div class="fl"><div class="lbl">Category</div><div class="chips">${CATS.map(c=>`<button class="${c===S.cat?'on':''}" onclick="S.cat='${c}';render()">${c}</button>`).join('')}</div></div>
+<button class="cta" onclick="if(!S.name.trim()){toast('Enter a product name');return}S.ans=[];go('q')">Help Me Decide</button>`},
+q(){const n=S.ans.length;const all=n>=3;
+ const st=i=>i<n?'d':i===n?'a':'f';
+ return `${hd('Pause &amp; Reflect')}${prog(all?3:n)}${itemBar()}<div class="lbl" style="color:var(--or)">${all?'All answered ✓':`Question ${n+1} of 3`}</div>
+ ${[0,1,2].map(i=>qcard(i,st(i))).join('')}${all?`<button class="cta" onclick="go('decision')">See My Options →</button>`:''}`},
+decision(){const buy=wantsToBuy();
+ return `${hd('Your Decision')}<div class="tag">${buy?'✅ Buy Mindfully':'💡 Explore Options'}</div>
+ <h2 style="font-size:20px">${buy?'This looks like a considered purchase.':'There might be a smarter way.'}</h2>
+ <p class="body">${buy?'You need it, own nothing similar, and it can’t wait. Compare prices and buy with confidence.':'Your answers suggest you could meet this need without buying new. Borrowing, renting, or going second-hand could save money and reduce waste.'}</p>
+ <div class="card it"><small>Your Item</small><b class="p" style="grid-row:1;grid-column:2;font-size:0"></b><b>${esc(S.name)}</b><b class="p">₹${esc(priceTxt())}</b><small>${S.cat}</small></div>
+ <button class="cta" style="margin-top:0" onclick="go('alts')">🔄 Explore Alternatives</button>
+ <button class="cta w" onclick="toast('⏳ Reminder set — revisit in 24 hours')">⏳ Wait 24 Hours</button>
+ <button class="lnk" onclick="go('impact')">Track this in My Impact →</button>`},
+alts(){return `${hd('Better Alternatives')}<h2>Better options exist. ✨</h2><div class="sub" style="margin-bottom:18px">Before buying new, consider these.</div>
+ ${ALTS.map(a=>`<div class="alt" style="background:${a[3]}"><div class="ai">${a[4]}</div><div><h4 style="color:${a[2]}">${a[0]}<small>${a[1]}</small></h4><p>${a[5]}</p></div></div>`).join('')}
+ <button class="cta" style="margin-top:12px" onclick="go('decision')">See My Decision</button>`},
+impact(){return `${hd('My Impact')}<div style="display:flex;justify-content:space-between;align-items:center;margin-top:-6px"><h2>My Impact</h2><span style="font-size:22px">📊</span></div><span class="samp">✨ Illustrative sample data</span>
+ <div class="big"><i>💰</i><div><strong>₹4,850</strong><span>Money saved this month</span></div></div>
+ <div class="two"><div style="background:var(--pink)"><em>♻️</em><strong>7</strong>Items reused or repaired</div><div style="background:var(--mint)"><em>🚫</em><strong>3</strong>Unnecessary purchases avoided</div></div>
+ <div class="card goal"><div>Monthly Goal<b>3 / 5 done</b></div><div class="bar"><i style="width:60%"></i></div><small>Avoid 5 unnecessary purchases this month</small></div>
+ <div class="know"><b>💡 Did you know?</b>The average college student makes 3–4 impulse purchases per week — that’s ₹15,000+ per semester. Small pauses add up to big savings.</div>
+ <button class="cta" onclick="S.stack=[];S.ans=[];go('new',false)">Make Another Decision</button>`}
+};
+function render(){
+ $.innerHTML=`<div class="fade" key="${S.screen}">${views[S.screen]()}</div>${S.toast?`<div class="toast">${S.toast}</div>`:''}`;
+}
+render();
+</script>
+</body>
+</html>
